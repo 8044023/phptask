@@ -16,6 +16,12 @@
     "autoload": {
         "psr-0": { "Phptask\\": "src/" }
     },
+    "repositories": [
+    {
+        "type": "vcs",
+        "url":  "https://github.com/8044023/phptask"
+    }
+]
    /* "extra": {
         "branch-alias": {
             "master": "1.0"
