@@ -22,5 +22,9 @@
         "url":  "https://github.com/8044023/phptask"
     }
 ]
-  
+   "extra": {
+        "branch-alias": {
+            "master": "1.0"
+        }
+    }
 }
