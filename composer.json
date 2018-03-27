@@ -16,6 +16,7 @@
     "autoload": {
         "psr-0": { "Phptask\\": "src/" }
     },
+    "homepage": "https://github.com/8044023/phptask",
     "repositories": {
         "packagist": {
             "type": "composer",
