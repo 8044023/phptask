@@ -1,5 +1,5 @@
 {
-    "name": "8044023/phptask",
+    "name": "phptask/phptask",
     "description": "Pagination for PHP 5.3",
     "keywords": ["phptask","taskphp", "timephp", "task"],
     "type": "library",
