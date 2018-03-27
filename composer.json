@@ -16,9 +16,9 @@
     "autoload": {
         "psr-0": { "Phptask\\": "src/" }
     },
-    "extra": {
+   /* "extra": {
         "branch-alias": {
             "master": "1.0"
         }
-    }
+    }*/
 }
