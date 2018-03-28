@@ -30,7 +30,7 @@ oschina地址: http://git.oschina.net/cqcqphper/taskPHP<br>
 
 ### composer安装taskphp框架:
 ``` php
-omposer require phptask/phptask
+composer require phptask/phptask
 ```
 ## 命令操作
 ``` php
