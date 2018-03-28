@@ -1,4 +1,10 @@
 <?php
+/**
+ * phpTask
+ * @author     邹霞<8044023@qq.com>
+ * @copyright  taskPHP
+ * @license    https://github.com/8044023/phptask
+ */
 namespace Phptask;
 class Task{
     public $task_list=[];
@@ -192,10 +198,10 @@ class Ui{
         $isClose==true && die;
     }
     public static function statusUI($isClose=true){
-        echo "----------------------- taskPHP --------------------------------".PHP_EOL;
-        echo 'timePHP version:', "v1.0", "          PHP version:", PHP_VERSION,PHP_EOL;
+        echo "----------------------- phptask --------------------------------".PHP_EOL;
+        echo 'phptask version:', "v1.0", "          PHP version:", PHP_VERSION,PHP_EOL;
         echo 'startTime:', date("Y-m-d H:i:s"),PHP_EOL;
-        echo "------------------------ timePHP -------------------------------".PHP_EOL;
+        echo "------------------------ phptask -------------------------------".PHP_EOL;
         echo "名称", str_pad('',
         self::$_maxPidLength + 2 - strlen('名称')), "时间", str_pad('',
         self::$_maxNameLength + 2 - strlen('时间')), "进程数".PHP_EOL;
