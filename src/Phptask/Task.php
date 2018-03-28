@@ -1,16 +1,16 @@
 <?php
 /**
  * phpTask
- * @author     邹霞<8044023@qq.com>
- * @copyright  taskPHP
+ * @author     邹霞<986830185@qq.com>
+ * @copyright  phpTask
  * @license    https://github.com/8044023/phptask
  */
-namespace Phptask;
+namespace Taskphp;
 class Task{
     public $task_list=[];
     public static $_config=[];
     public static $_isstart=true;
-    public function __construct($config){
+    public function __construct($config=[]){
         self::$_config=$config;
         Command::run();
     }
@@ -18,7 +18,7 @@ class Task{
      * 添加任务
      * @param callable $callbel
      * @param unknown $name
-     * @param unknown $time
+     * @param unknown $time  
      * @param number $course  */
     public function addTask(callable $callbel,$name,$time,$course=1){
         //命令解析  时间解析   进程分配
@@ -53,7 +53,7 @@ class Command{
     const _START_       ="start";
     const _STATUS_      ="status";
     const _COLSE_       ="close";
-    const _MY_VERSION_  ="v1.0";    
+    const _MY_VERSION_  ="v1.0";
     public static function run(){
         //获取命令行参数
         $argv = self::analysisCommand();
@@ -124,12 +124,14 @@ class Worker{
     }
     public static function executeWin($task){ echo "win";}
     //运行
-    public static function start($task){        while (true) {            TaskTimer::init($task["time"]);
+    public static function start($task){
+        while (true) {
+            TaskTimer::init($task["time"]);
             call_user_func($task["task"]);
         }
     }
     public static function monitoringHostDaemon($host_pid){
-        if (Command::$_isdaemon==false && self::$is_system!="WIN" && Command::$_command==Command::_START_ && self::$_isstart){
+        if (Command::$_isdaemon==false && self::$is_system!="WIN" && Command::$_command==Command::_START_ && Task::$_isstart){
             $pid = pcntl_fork();//开启进程
             if($pid==0){//开启子进程
                 posix_setsid () == - 1 && die( "分离失败" );
@@ -151,7 +153,7 @@ class Worker{
         foreach ($pid_list as $v_pid) posix_kill($v_pid, SIGTERM);//关闭当前进程
     }
     public static function mountDaemon(){
-        if (Command::$_isdaemon==false && Command::$_command==Command::_START_ && self::$_isstart){
+        if (Command::$_isdaemon==false && Command::$_command==Command::_START_ && Task::$_isstart){
             while (true) {}
         }
     }
@@ -198,13 +200,13 @@ class Ui{
         $isClose==true && die;
     }
     public static function statusUI($isClose=true){
-        echo "----------------------- phptask --------------------------------".PHP_EOL;
-        echo 'phptask version:', "v1.0", "          PHP version:", PHP_VERSION,PHP_EOL;
+        echo "----------------------- phpTask --------------------------------".PHP_EOL;
+        echo 'phpTask version:', "v1.0", "          PHP version:", PHP_VERSION,PHP_EOL;
         echo 'startTime:', date("Y-m-d H:i:s"),PHP_EOL;
-        echo "------------------------ phptask -------------------------------".PHP_EOL;
+        echo "------------------------ phpTask -------------------------------".PHP_EOL;
         echo "名称", str_pad('',
-        self::$_maxPidLength + 2 - strlen('名称')), "时间", str_pad('',
-        self::$_maxNameLength + 2 - strlen('时间')), "进程数".PHP_EOL;
+            self::$_maxPidLength + 2 - strlen('名称')), "时间", str_pad('',
+                self::$_maxNameLength + 2 - strlen('时间')), "进程数".PHP_EOL;
         foreach (Log::readPid(Log::LOG_TASK) AS $v){
             echo str_pad($v->name, self::$_maxPidLength + 2), str_pad($v->time,self::$_maxNameLength + 2),"  ".$v->course.PHP_EOL;
         }
@@ -231,7 +233,7 @@ class Log{
             $file_path=__DIR__."/".self::$pid_path;
             if(file_exists($file_path)){
                 return explode(",",file_get_contents($file_path),-1);//将整个文件内容读入到一个字符串中
-            } 
+            }
         }else if ($type==self::LOG_TASK){
             return json_decode(file_get_contents(__DIR__."/".self::$task_path));
         }
