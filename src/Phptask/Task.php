@@ -5,7 +5,7 @@
  * @copyright  phpTask
  * @license    https://github.com/8044023/phptask
  */
-namespace Taskphp;
+namespace PhpTask;
 class Task{
     public $task_list=[];
     public static $_config=[];
