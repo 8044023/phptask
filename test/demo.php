@@ -1,5 +1,5 @@
 <?php
-use Taskphp\Task;
+use phpTask\Task;
 /** 
  * phpTask
  * @author     邹霞<986830185@qq.com>
